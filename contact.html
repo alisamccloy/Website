@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Alisa McCloy</title>
+  <meta name="description" content="Get in touch with Alisa McCloy for commissions, assisting, and collaboration. Based in Canterbury, UK." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="bg-stage" data-section="contact" aria-hidden="true">
+    <div class="bg-stage__layer layer--home"      style="background-image:url('assets/images/bg-home.svg')"></div>
+    <div class="bg-stage__layer layer--about"     style="background-image:url('assets/images/bg-about.svg')"></div>
+    <div class="bg-stage__layer layer--portfolio" style="background-image:url('assets/images/bg-portfolio.svg')"></div>
+    <div class="bg-stage__layer layer--contact"   style="background-image:url('assets/images/bg-contact.svg')"></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html"><span class="dot"></span>Alisa McCloy</a>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="Primary">
+      <a class="nav__link" data-bg="home"      href="index.html">Home</a>
+      <a class="nav__link" data-bg="about"     href="about.html">About</a>
+      <a class="nav__link" data-bg="portfolio" href="portfolio.html">Portfolio</a>
+      <a class="nav__link" data-bg="contact"   href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <header class="page-head container">
+      <p class="eyebrow">Contact</p>
+      <h1 class="page-head__title">Let’s Make<br />Something</h1>
+      <p class="page-head__lede">Commissions, assisting, and collaboration welcome. Tell me a little about the project and I’ll reply within a couple of days.</p>
+    </header>
+
+    <section class="section container" style="padding-top:0">
+      <div class="grid12 contact__grid">
+        <div class="contact__form">
+          <form id="contactForm" novalidate>
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn" type="submit">Send <span class="arrow">→</span></button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <aside class="contact__aside">
+          <h3>Direct</h3>
+          <p><a class="maillink" href="mailto:hello@alisamccloy.com">hello@alisamccloy.com</a></p>
+
+          <div class="socials" aria-label="Social links">
+            <a href="#" rel="noopener">Instagram</a>
+            <a href="#" rel="noopener">Vimeo</a>
+            <a href="#" rel="noopener">LinkedIn</a>
+          </div>
+
+          <p class="loc">Based in Canterbury, UK.<br />Available for travel.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <span class="nav__brand"><span class="dot"></span>Alisa McCloy</span>
+      <span class="footer__meta">Editorial photography &amp; film · Canterbury, UK</span>
+      <span class="footer__meta">© <span id="yr">2026</span> Alisa McCloy</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('yr').textContent = new Date().getFullYear();
+    var form = document.getElementById('contactForm');
+    var status = document.getElementById('formStatus');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { status.textContent = 'Please complete every field.'; return; }
+      var name = document.getElementById('name').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var message = document.getElementById('message').value.trim();
+      var subject = encodeURIComponent('Portfolio enquiry from ' + name);
+      var body = encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email);
+      window.location.href = 'mailto:hello@alisamccloy.com?subject=' + subject + '&body=' + body;
+      status.textContent = 'Opening your email app...';
+      form.reset();
+    });
+  </script>
+</body>
+</html>

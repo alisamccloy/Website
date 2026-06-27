@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alisa McCloy — Editorial Photography &amp; Film, Canterbury</title>
+  <meta name="description" content="Editorial photography and film direction from Canterbury, UK. Stills and motion built around mood, restraint, and a strong point of view." />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Background crossfade stage (hover the nav to preview each section) -->
+  <div class="bg-stage" data-section="home" aria-hidden="true">
+    <div class="bg-stage__layer layer--home"      style="background-image:url('assets/images/bg-home.svg')"></div>
+    <div class="bg-stage__layer layer--about"     style="background-image:url('assets/images/bg-about.svg')"></div>
+    <div class="bg-stage__layer layer--portfolio" style="background-image:url('assets/images/bg-portfolio.svg')"></div>
+    <div class="bg-stage__layer layer--contact"   style="background-image:url('assets/images/bg-contact.svg')"></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="index.html"><span class="dot"></span>Alisa McCloy</a>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+    </button>
+    <nav class="nav__links" id="nav-links" aria-label="Primary">
+      <a class="nav__link" data-bg="home"      href="index.html"     aria-current="page">Home</a>
+      <a class="nav__link" data-bg="about"     href="about.html">About</a>
+      <a class="nav__link" data-bg="portfolio" href="portfolio.html">Portfolio</a>
+      <a class="nav__link" data-bg="contact"   href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="eyebrow">Editorial Photography · Film Production · Canterbury</p>
+        <h1 class="hero__title">
+          <span class="line">Light, Grain,</span>
+          <span class="line accent">&amp; Intention</span>
+        </h1>
+        <p class="hero__sub">Stills and motion built around mood, restraint, and a strong point of view — for editorial, brands, and the people behind them.</p>
+        <a class="btn" href="portfolio.html">View the work <span class="arrow">→</span></a>
+      </div>
+      <span class="hero__cue">Hover the menu to preview</span>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__row">
+      <span class="nav__brand"><span class="dot"></span>Alisa McCloy</span>
+      <span class="footer__meta">Editorial photography &amp; film · Canterbury, UK</span>
+      <span class="footer__meta">© <span id="yr">2026</span> Alisa McCloy</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
