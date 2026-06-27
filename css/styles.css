@@ -5,17 +5,20 @@
 
 :root {
   /* — Colour palette ————————————————————————————— */
-  --bg:             #0D0D0D;
-  --surface:        #161616;
-  --accent:         #A8B9A3;   /* muted sage */
-  --accent-dim:     #7C8A77;   /* dimmer sage for borders / hovers */
-  --text-primary:   #F0EDE8;
-  --text-secondary: #9E9A94;
-  --divider:        #5C5855;
-  --scrim:          rgba(0, 0, 0, 0.55);
+  --color-bg:        #0a0806;
+  --color-surface:   #1c1008;
+  --color-border:    #3d1a06;
+  --color-primary:   #8b3e0a;
+  --color-highlight: #c86418;
 
-  /* To revert to gold:    --accent:#C8A96E; --accent-dim:#9b8350;
-     For editorial red:    --accent:#BF4D3B; --accent-dim:#8f3a2c; */
+  --bg:             var(--color-bg);
+  --surface:        var(--color-surface);
+  --accent:         var(--color-highlight);
+  --accent-dim:     var(--color-primary);
+  --text-primary:   #f2e7db;
+  --text-secondary: #b99578;
+  --divider:        var(--color-border);
+  --scrim:          rgba(10, 8, 6, 0.5);
 
   /* — Typography ————————————————————————————————— */
   --font-display: "Barlow", system-ui, sans-serif;
