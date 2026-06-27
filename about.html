@@ -3,78 +3,55 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About — Alisa McCloy</title>
-  <meta name="description" content="About Alisa McCloy — a Canterbury-based editorial photographer and film-maker working across stills and motion." />
+  <title>About - Alisa McCloy</title>
+  <meta name="description" content="About Alisa McCloy, a Canterbury-based photographer and film-maker." />
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body>
+<body data-page="about">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="bg-stage" data-section="about" aria-hidden="true">
-    <div class="bg-stage__layer layer--home"      style="background-image:url('assets/images/bg-home.svg')"></div>
-    <div class="bg-stage__layer layer--about"     style="background-image:url('assets/images/bg-about.svg')"></div>
-    <div class="bg-stage__layer layer--portfolio" style="background-image:url('assets/images/bg-portfolio.svg')"></div>
-    <div class="bg-stage__layer layer--contact"   style="background-image:url('assets/images/bg-contact.svg')"></div>
-  </div>
-
-  <header class="nav" id="nav">
-    <a class="nav__brand" href="index.html"><span class="dot"></span>Alisa McCloy</a>
-    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
-    </button>
-    <nav class="nav__links" id="nav-links" aria-label="Primary">
-      <a class="nav__link" data-bg="home"      href="index.html">Home</a>
-      <a class="nav__link" data-bg="about"     href="about.html"     aria-current="page">About</a>
-      <a class="nav__link" data-bg="portfolio" href="portfolio.html">Portfolio</a>
-      <a class="nav__link" data-bg="contact"   href="contact.html">Contact</a>
+  <header class="side-nav" aria-label="Site navigation">
+    <a class="brand" href="index.html">Alisa<br />McCloy</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
+    <nav class="site-menu" id="site-menu">
+      <a href="portfolio.html">Work</a>
+      <a href="about.html" aria-current="page">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
+    <p class="side-note">Photography<br />Film<br />Canterbury</p>
   </header>
 
-  <main id="main">
-    <header class="page-head container">
-      <p class="eyebrow">About</p>
-      <h1 class="page-head__title">The Person<br />Behind the Frame</h1>
-    </header>
-
-    <section class="section container">
-      <div class="grid12 about__grid">
-        <figure class="about__portrait">
-          <img src="assets/images/portrait.svg" alt="Black-and-white studio portrait of Alisa McCloy" loading="lazy" />
-          <figcaption>Studio, Canterbury — 2026</figcaption>
-        </figure>
-        <div class="about__bio">
-          <p>I’m a Canterbury-based photographer and film-maker in my final year of study, working across editorial stills and short-form motion. My work sits where documentary instinct meets a designed frame — quiet, considered, and built to hold attention without raising its voice.</p>
-          <p>I shoot portraits and editorial stories for magazines, brands, and independent collaborators, and direct short films with the same eye for light and restraint. Whether it’s a single frame or a finished cut, I care most about mood, composition, and getting people to look like themselves.</p>
-          <p>Currently open to assisting, commissions, and collaboration. If we share a sensibility, I’d like to hear from you.</p>
-        </div>
+  <main id="main" class="page about-page">
+    <section class="split-intro">
+      <div>
+        <p class="kicker">About</p>
+        <h1>The person behind the frame.</h1>
       </div>
+      <figure>
+        <img src="assets/images/portrait.svg" alt="Black-and-white studio portrait of Alisa McCloy" />
+      </figure>
+    </section>
 
-      <div class="skillstrip">
-        <div class="container skillstrip__inner" role="list" aria-label="Skills">
-          <span class="skill" role="listitem">Cinematography</span><span class="sep">·</span>
-          <span class="skill" role="listitem">Colour Grading</span><span class="sep">·</span>
-          <span class="skill" role="listitem">Editorial Photography</span><span class="sep">·</span>
-          <span class="skill" role="listitem">Direction</span><span class="sep">·</span>
-          <span class="skill" role="listitem">Lighting</span><span class="sep">·</span>
-          <span class="skill" role="listitem">Post-Production</span>
-        </div>
-      </div>
+    <section class="text-grid">
+      <p>I am a Canterbury-based photographer and film-maker working across editorial stills and short-form motion. My work is built around restraint, observation, and a strong sense of mood.</p>
+      <p>I photograph portraits and editorial stories for magazines, brands, and independent collaborators, and I approach film with the same care for light, rhythm, and quiet detail.</p>
+      <p>Currently open to assisting, commissions, and collaboration. If the tone of the work feels close to what you are making, I would like to hear from you.</p>
+    </section>
+
+    <section class="services" aria-label="Skills">
+      <span>Cinematography</span>
+      <span>Editorial Photography</span>
+      <span>Direction</span>
+      <span>Lighting</span>
+      <span>Colour Grading</span>
+      <span>Post-Production</span>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer__row">
-      <span class="nav__brand"><span class="dot"></span>Alisa McCloy</span>
-      <span class="footer__meta">Editorial photography &amp; film · Canterbury, UK</span>
-      <span class="footer__meta">© <span id="yr">2026</span> Alisa McCloy</span>
-    </div>
-  </footer>
-
   <script src="js/main.js"></script>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 </body>
 </html>

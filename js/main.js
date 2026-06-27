@@ -1,118 +1,93 @@
-/* ============================================================
-   FILM PORTFOLIO — main.js  (vanilla JS, no dependencies)
-   ============================================================ */
 (function () {
   "use strict";
 
-  /* ---- Nav: fade background in on scroll ------------------ */
-  const nav = document.querySelector(".nav");
-  if (nav) {
-    const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  /* ---- Nav: mobile toggle --------------------------------- */
-  const toggle = document.querySelector(".nav__toggle");
-  const links = document.querySelector(".nav__links");
-  if (toggle && links) {
+  const toggle = document.querySelector(".menu-toggle");
+  const menu = document.querySelector(".site-menu");
+  if (toggle && menu) {
     toggle.addEventListener("click", () => {
-      const open = links.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(open));
-    });
-    links.addEventListener("click", (e) => {
-      if (e.target.closest(".nav__link")) {
-        links.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
-      }
+      const isOpen = menu.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
     });
   }
 
-  /* ---- Nav-hover background crossfade ---------------------- *
-   * Hovering or focusing a nav link fades in that section's
-   * image. Pointer-capable devices only (mobile = static).    */
-  const stage = document.querySelector(".bg-stage");
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-  if (stage && canHover) {
-    const layers = {
-      home: stage.querySelector(".layer--home"),
-      about: stage.querySelector(".layer--about"),
-      portfolio: stage.querySelector(".layer--portfolio"),
-      contact: stage.querySelector(".layer--contact"),
-    };
-    const current = stage.dataset.section; // page we're on; its layer is the resting state
-    const setActive = (key) => {
-      Object.entries(layers).forEach(([k, el]) => {
-        if (!el) return;
-        el.classList.toggle("is-active", k === key);
-      });
-    };
-    const reset = () => setActive(current);
-
-    document.querySelectorAll(".nav__link[data-bg]").forEach((link) => {
-      const key = link.dataset.bg;
-      link.addEventListener("mouseenter", () => setActive(key));
-      link.addEventListener("mouseleave", reset);
-      link.addEventListener("focus", () => setActive(key));
-      link.addEventListener("blur", reset);
-    });
-  }
-
-  /* ---- Portfolio: filter Photography / Film --------------- */
-  const filterBtns = document.querySelectorAll(".filter__btn");
-  const works = document.querySelectorAll(".work");
-  if (filterBtns.length && works.length) {
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const f = btn.dataset.filter;
-        filterBtns.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-        works.forEach((w) => {
-          const show = f === "all" || w.dataset.type === f;
-          w.hidden = !show;
-        });
+  const homeImages = document.querySelectorAll(".home-image");
+  document.querySelectorAll("[data-preview]").forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+      homeImages.forEach((image) => {
+        image.classList.toggle("is-active", image.dataset.panel === link.dataset.preview);
       });
     });
-  }
+    link.addEventListener("focus", () => {
+      homeImages.forEach((image) => {
+        image.classList.toggle("is-active", image.dataset.panel === link.dataset.preview);
+      });
+    });
+  });
 
-  /* ---- Portfolio: lightbox (photos) + modal (film) -------- */
-  const lb = document.querySelector(".lightbox");
-  if (lb) {
-    const stageEl = lb.querySelector(".lightbox__stage");
-    const cap = lb.querySelector(".lightbox__cap");
-    const closeBtn = lb.querySelector(".lightbox__close");
-    let lastFocused = null;
+  const filterButtons = document.querySelectorAll(".filter__btn");
+  const cards = document.querySelectorAll(".project-card");
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter;
+      filterButtons.forEach((item) => item.setAttribute("aria-pressed", String(item === button)));
+      cards.forEach((card) => {
+        card.hidden = filter !== "all" && card.dataset.type !== filter;
+      });
+    });
+  });
 
-    const open = (work) => {
-      lastFocused = work;
-      const title = work.dataset.title || "";
-      const meta = work.dataset.meta || "";
-      cap.textContent = meta ? `${title} — ${meta}` : title;
+  const lightbox = document.querySelector(".lightbox");
+  if (lightbox) {
+    const image = lightbox.querySelector(".lightbox__image");
+    const caption = lightbox.querySelector(".lightbox__caption");
+    const close = lightbox.querySelector(".lightbox__close");
+    let lastFocused;
 
-      if (work.dataset.type === "film" && work.dataset.embed) {
-        stageEl.innerHTML =
-          `<div class="lightbox__frame"><iframe src="${work.dataset.embed}" ` +
-          `title="${title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
-      } else {
-        const src = work.dataset.full || work.querySelector("img")?.src || "";
-        stageEl.innerHTML = `<img src="${src}" alt="${title}">`;
-      }
-      lb.classList.add("is-open");
-      document.body.style.overflow = "hidden";
-      closeBtn.focus();
-    };
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        lastFocused = card;
+        image.src = card.dataset.full;
+        image.alt = card.dataset.title;
+        caption.textContent = `${card.dataset.title} - ${card.dataset.meta}`;
+        lightbox.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+        close.focus();
+      });
+    });
 
-    const close = () => {
-      lb.classList.remove("is-open");
-      stageEl.innerHTML = ""; // stop any playing video
+    const closeLightbox = () => {
+      lightbox.classList.remove("is-open");
       document.body.style.overflow = "";
+      image.src = "assets/images/photo-01.svg";
       if (lastFocused) lastFocused.focus();
     };
 
-    works.forEach((w) => w.addEventListener("click", () => open(w)));
-    closeBtn.addEventListener("click", close);
-    lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lb.classList.contains("is-open")) close();
+    close.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && lightbox.classList.contains("is-open")) closeLightbox();
+    });
+  }
+
+  const form = document.getElementById("contactForm");
+  if (form) {
+    const status = document.getElementById("formStatus");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        status.textContent = "Please complete every field.";
+        return;
+      }
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+      const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+      const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
+      window.location.href = `mailto:hello@alisamccloy.com?subject=${subject}&body=${body}`;
+      status.textContent = "Opening your email app...";
+      form.reset();
     });
   }
 })();
