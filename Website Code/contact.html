@@ -44,6 +44,7 @@
     <section class="section container" style="padding-top:0">
       <div class="grid12 contact__grid">
         <div class="contact__form">
+          <!-- Demo form. Wire up an endpoint (e.g. Formspree) — see README. -->
           <form id="contactForm" novalidate>
             <div class="field">
               <label for="name">Name</label>
@@ -64,7 +65,7 @@
 
         <aside class="contact__aside">
           <h3>Direct</h3>
-          <p><a class="maillink" href="mailto:hello@alisamccloy.com">hello@alisamccloy.com</a></p>
+          <p><a class="maillink" href="mailto:hello@alisamccloy.example">hello@alisamccloy.example</a></p>
 
           <div class="socials" aria-label="Social links">
             <a href="#" rel="noopener">Instagram</a>
@@ -89,18 +90,13 @@
   <script src="js/main.js"></script>
   <script>
     document.getElementById('yr').textContent = new Date().getFullYear();
+    // Demo-only submit handler. Replace with a real endpoint (see README).
     var form = document.getElementById('contactForm');
     var status = document.getElementById('formStatus');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { status.textContent = 'Please complete every field.'; return; }
-      var name = document.getElementById('name').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var message = document.getElementById('message').value.trim();
-      var subject = encodeURIComponent('Portfolio enquiry from ' + name);
-      var body = encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email);
-      window.location.href = 'mailto:hello@alisamccloy.com?subject=' + subject + '&body=' + body;
-      status.textContent = 'Opening your email app...';
+      status.textContent = 'Thanks — this is a demo form. Connect an endpoint to receive messages.';
       form.reset();
     });
   </script>
