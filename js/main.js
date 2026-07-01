@@ -48,6 +48,7 @@
       });
     };
     const reset = () => setActive(current);
+    reset();
 
     document.querySelectorAll(".nav__link[data-bg]").forEach((link) => {
       const key = link.dataset.bg;

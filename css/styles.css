@@ -103,8 +103,11 @@ h1, h2, h3, .display {
   content: ""; position: absolute; inset: 0;
   background: var(--scrim); z-index: 1;
 }
-.bg-stage[data-section="home"]      .layer--home      { opacity: 1; } /* home shows its still by default */
-.bg-stage[data-section="home"]      .layer--home.is-active { opacity: 1; }
+/* each page shows its own section's still by default, before any hover JS runs */
+.bg-stage[data-section="home"]      .layer--home      { opacity: 1; }
+.bg-stage[data-section="about"]     .layer--about      { opacity: 1; }
+.bg-stage[data-section="portfolio"] .layer--portfolio  { opacity: 1; }
+.bg-stage[data-section="contact"]   .layer--contact    { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .bg-stage__layer { transition: none; }
