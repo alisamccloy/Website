@@ -5,20 +5,24 @@
 
 :root {
   /* — Colour palette ————————————————————————————— */
-  --color-bg:        #0a0806;
-  --color-surface:   #1c1008;
-  --color-border:    #3d1a06;
-  --color-primary:   #8b3e0a;
-  --color-highlight: #c86418;
+  --black:       #0A0A0A;  /* page background */
+  --near-black:  #181818;  /* section/surface background */
+  --charcoal:    #2C2C2A;  /* cards, panels */
+  --slate-grey:  #444441;  /* borders, dividers */
+  --mid-grey:    #5F5E5A;  /* muted/placeholder text */
+  --grey:        #888780;  /* secondary text */
+  --pale-grey:   #D3D1C7;  /* body text */
+  --white:       #FFFFFF;  /* headings, high-emphasis text */
 
-  --bg:             var(--color-bg);
-  --surface:        var(--color-surface);
-  --accent:         var(--color-highlight);
-  --accent-dim:     var(--color-primary);
-  --text-primary:   #f2e7db;
-  --text-secondary: #b99578;
-  --divider:        var(--color-border);
-  --scrim:          rgba(10, 8, 6, 0.5);
+  --bg:             var(--black);
+  --surface:        var(--near-black);
+  --card:           var(--charcoal);
+  --accent:         var(--pale-grey);
+  --accent-dim:     var(--grey);
+  --text-primary:   var(--white);
+  --text-secondary: var(--grey);
+  --divider:        var(--slate-grey);
+  --scrim:          rgba(10, 10, 10, 0.5);
 
   /* — Typography ————————————————————————————————— */
   --font-display: "Barlow", system-ui, sans-serif;
@@ -259,7 +263,7 @@ h1, h2, h3, .display {
 .work {
   break-inside: avoid; margin-bottom: var(--col-gap); position: relative;
   display: block; width: 100%; border: 1px solid transparent; overflow: hidden;
-  background: var(--surface); transition: border-color var(--ease);
+  background: var(--card); transition: border-color var(--ease);
   -webkit-appearance: none; appearance: none; text-align: left; padding: 0;
   color: inherit;
 }
@@ -309,7 +313,7 @@ h1, h2, h3, .display {
   letter-spacing: var(--nav-tracking); font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.55rem;
 }
 .field input, .field textarea {
-  width: 100%; background: var(--surface); color: var(--text-primary);
+  width: 100%; background: var(--card); color: var(--text-primary);
   border: 1px solid var(--divider); padding: 0.9rem 1rem; font: inherit;
   transition: border-color var(--ease);
 }
