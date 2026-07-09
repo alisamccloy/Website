@@ -42,13 +42,13 @@
     </header>
 
     <section class="section container" style="padding-top:0">
-      <div class="filter" role="group" aria-label="Filter work">
+      <div class="filter" role="group" aria-label="Filter work" data-reveal>
         <button class="filter__btn" data-filter="all"   aria-pressed="true">All</button>
         <button class="filter__btn" data-filter="photo" aria-pressed="false">Photography</button>
         <button class="filter__btn" data-filter="film"  aria-pressed="false">Film</button>
       </div>
 
-      <div class="work-grid">
+      <div class="work-grid" data-reveal>
         <button class="work" data-type="photo" data-title="Northbound" data-meta="Editorial · 2026" data-full="assets/images/DSC_0870.png">
           <img src="assets/images/DSC_0870.png" alt="Editorial photograph — Northbound" loading="lazy" />
         </button>
@@ -92,6 +92,12 @@
   <div class="lightbox" role="dialog" aria-modal="true" aria-label="Work viewer">
     <button class="lightbox__close" aria-label="Close">
       <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 3l12 12M15 3L3 15"/></svg>
+    </button>
+    <button class="lightbox__arrow lightbox__arrow--prev" aria-label="Previous">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 6l-9 8 9 8"/></svg>
+    </button>
+    <button class="lightbox__arrow lightbox__arrow--next" aria-label="Next">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 6l9 8-9 8"/></svg>
     </button>
     <div>
       <div class="lightbox__stage"></div>

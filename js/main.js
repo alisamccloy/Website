@@ -59,6 +59,66 @@
     });
   }
 
+  /* ---- Home: hero slideshow -------------------------------- */
+  const slides = document.querySelectorAll(".hero-slideshow__slide");
+  const dots = document.querySelectorAll(".hero-slideshow__dot");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (slides.length) {
+    let current = [...slides].findIndex((s) => s.classList.contains("is-active"));
+    if (current === -1) current = 0;
+    let timer = null;
+
+    const goTo = (index) => {
+      slides[current].classList.remove("is-active");
+      dots[current] && dots[current].classList.remove("is-active");
+      current = index;
+      const slide = slides[current];
+      slide.classList.add("is-active");
+      dots[current] && dots[current].classList.add("is-active");
+      if (!reduceMotion) {
+        slide.style.animation = "none";
+        void slide.offsetHeight; // restart the Ken Burns zoom from the start
+        slide.style.animation = "";
+      }
+    };
+
+    const startTimer = () => {
+      if (reduceMotion) return;
+      timer = setInterval(() => goTo((current + 1) % slides.length), 4000);
+    };
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        clearInterval(timer);
+        goTo(i);
+        startTimer();
+      });
+    });
+
+    startTimer();
+  }
+
+  /* ---- Scroll-reveal: fade elements up into view ----------- */
+  const revealEls = document.querySelectorAll("[data-reveal]");
+  if (revealEls.length) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      revealEls.forEach((el) => el.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      revealEls.forEach((el) => observer.observe(el));
+    }
+  }
+
   /* ---- Portfolio: filter Photography / Film --------------- */
   const filterBtns = document.querySelectorAll(".filter__btn");
   const works = document.querySelectorAll(".work");
@@ -81,10 +141,14 @@
     const stageEl = lb.querySelector(".lightbox__stage");
     const cap = lb.querySelector(".lightbox__cap");
     const closeBtn = lb.querySelector(".lightbox__close");
+    const prevBtn = lb.querySelector(".lightbox__arrow--prev");
+    const nextBtn = lb.querySelector(".lightbox__arrow--next");
     let lastFocused = null;
+    let current = 0;
 
-    const open = (work) => {
-      lastFocused = work;
+    const visibleWorks = () => [...works].filter((w) => !w.hidden);
+
+    const show = (work) => {
       const title = work.dataset.title || "";
       const meta = work.dataset.meta || "";
       cap.textContent = meta ? `${title} — ${meta}` : title;
@@ -97,6 +161,13 @@
         const src = work.dataset.full || work.querySelector("img")?.src || "";
         stageEl.innerHTML = `<img src="${src}" alt="${title}">`;
       }
+    };
+
+    const open = (work) => {
+      lastFocused = work;
+      const list = visibleWorks();
+      current = list.indexOf(work);
+      show(work);
       lb.classList.add("is-open");
       document.body.style.overflow = "hidden";
       closeBtn.focus();
@@ -109,11 +180,23 @@
       if (lastFocused) lastFocused.focus();
     };
 
+    const step = (dir) => {
+      const list = visibleWorks();
+      if (!list.length) return;
+      current = (current + dir + list.length) % list.length;
+      show(list[current]);
+    };
+
     works.forEach((w) => w.addEventListener("click", () => open(w)));
     closeBtn.addEventListener("click", close);
+    prevBtn.addEventListener("click", () => step(-1));
+    nextBtn.addEventListener("click", () => step(1));
     lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lb.classList.contains("is-open")) close();
+      if (!lb.classList.contains("is-open")) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
     });
   }
 })();
