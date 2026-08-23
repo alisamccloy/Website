@@ -307,7 +307,23 @@ h1, h2, h3, .display {
   letter-spacing: var(--nav-tracking); font-size: 0.7rem; color: var(--accent);
 }
 .project__title { font-size: clamp(1.4rem, 3vw, 2rem); margin-top: 0.5rem; }
+.project__title a:hover { color: var(--accent); }
+.project__image {
+  width: 100%; max-width: 32rem; aspect-ratio: 4 / 3;
+  object-fit: cover; object-position: center;
+  margin-top: 1.25rem; border: 1px solid var(--black);
+}
 .project__desc { color: var(--text-secondary); max-width: 60ch; margin-top: 0.9rem; }
+
+/* Project detail page (e.g. i-promise.html) */
+.page-head .eyebrow a:hover { color: var(--text-primary); }
+.gallery-grid { columns: 3; column-gap: var(--col-gap); }
+@media (max-width: 900px) { .gallery-grid { columns: 2; } }
+@media (max-width: 560px) { .gallery-grid { columns: 1; } }
+.gallery-item { break-inside: avoid; margin-bottom: var(--col-gap); border: 1px solid var(--divider); }
+.gallery-item img { width: 100%; display: block; }
+.clip { position: relative; width: 100%; max-width: 62rem; aspect-ratio: 16 / 9; background: var(--black); border: 1px solid var(--divider); }
+.clip iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 /* ============================================================
    PORTFOLIO
