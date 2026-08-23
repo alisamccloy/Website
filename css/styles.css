@@ -292,6 +292,18 @@ h1, h2, h3, .display {
 .skillstrip__inner span.skill:hover { color: var(--text-primary); }
 
 /* ============================================================
+   PROJECTS
+   ============================================================ */
+.projects-list { max-width: 62rem; }
+.projects-list .divider { margin-block: clamp(2rem, 5vw, 3rem); }
+.project__meta {
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  letter-spacing: var(--nav-tracking); font-size: 0.7rem; color: var(--accent);
+}
+.project__title { font-size: clamp(1.4rem, 3vw, 2rem); margin-top: 0.5rem; }
+.project__desc { color: var(--text-secondary); max-width: 60ch; margin-top: 0.9rem; }
+
+/* ============================================================
    PORTFOLIO
    ============================================================ */
 .filter { display: inline-flex; gap: 0.4rem; border: 1px solid var(--divider); padding: 0.3rem; margin-bottom: clamp(2rem, 5vw, 3rem); }
