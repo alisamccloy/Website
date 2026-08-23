@@ -294,6 +294,12 @@ h1, h2, h3, .display {
 /* ============================================================
    PROJECTS
    ============================================================ */
+.projects-group + .projects-group { margin-top: clamp(3rem, 7vw, 5rem); }
+.projects-group__title {
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  padding-bottom: 1rem; margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--divider);
+}
 .projects-list { max-width: 62rem; }
 .projects-list .divider { margin-block: clamp(2rem, 5vw, 3rem); }
 .project__meta {
