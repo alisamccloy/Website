@@ -325,6 +325,26 @@ h1, h2, h3, .display {
 .clip { position: relative; width: 100%; max-width: 62rem; aspect-ratio: 16 / 9; background: var(--black); border: 1px solid var(--divider); }
 .clip iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
+/* Journal: each place is a block that links to its own page */
+.journal-grid {
+  display: grid; gap: var(--col-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 26rem), 1fr));
+}
+.journal-block {
+  position: relative; aspect-ratio: 16 / 10;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--card); border: 1px solid var(--divider);
+  transition: border-color var(--ease);
+}
+.journal-block:hover { border-color: var(--accent); }
+.journal-block__title { font-size: clamp(1.6rem, 3.5vw, 2.5rem); }
+.journal-block__title a::after { content: ""; position: absolute; inset: 0; } /* whole block is the link */
+.journal-block__title a:focus-visible { outline: none; }
+.journal-block__title a:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 3px; }
+.journal-block__arrow { font-size: 1.6rem; line-height: 1; transition: transform var(--ease); }
+.journal-block:hover .journal-block__arrow { transform: translateX(6px); }
+
 /* ============================================================
    PORTFOLIO
    ============================================================ */
@@ -360,6 +380,7 @@ h1, h2, h3, .display {
 .work:hover, .work:focus-visible { border-color: var(--accent); }
 .work:hover .work__overlay, .work:focus-visible .work__overlay { opacity: 1; }
 .work[hidden] { display: none; }
+.work-empty { color: var(--text-secondary); padding-block: 1rem; }
 
 /* Lightbox / film modal */
 .lightbox { position: fixed; inset: 0; z-index: 100; display: none; place-items: center;

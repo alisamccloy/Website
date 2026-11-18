@@ -119,20 +119,50 @@
     }
   }
 
-  /* ---- Portfolio: filter Photography / Film --------------- */
+  /* ---- Portfolio: filter Portrait / Landscape -------------- *
+   * Sorted automatically by each image's shape (taller than wide
+   * = portrait, otherwise landscape). Uses the real size once the
+   * image has loaded, or its width/height attributes before then.
+   * Both tabs always show; one with no photos yet shows a note. */
   const filterBtns = document.querySelectorAll(".filter__btn");
   const works = document.querySelectorAll(".work");
+  const emptyNote = document.querySelector(".work-empty");
   if (filterBtns.length && works.length) {
+    let activeFilter = "all";
+
+    const classify = (work) => {
+      const img = work.querySelector("img");
+      if (!img) return;
+      const w = img.naturalWidth || Number(img.getAttribute("width"));
+      const h = img.naturalHeight || Number(img.getAttribute("height"));
+      if (w && h) work.dataset.orientation = h > w ? "portrait" : "landscape";
+    };
+
+    const apply = () => {
+      filterBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filter === activeFilter)));
+      works.forEach((w) => {
+        // Shape not known yet? Keep it visible so a lazy image can still load and get sorted.
+        const o = w.dataset.orientation;
+        w.hidden = activeFilter !== "all" && !!o && o !== activeFilter;
+      });
+      if (emptyNote) {
+        emptyNote.hidden = [...works].some((w) => !w.hidden);
+        emptyNote.textContent = `No ${activeFilter} photos yet.`;
+      }
+    };
+
+    works.forEach((w) => {
+      classify(w);
+      const img = w.querySelector("img");
+      if (img) img.addEventListener("load", () => { classify(w); apply(); });
+    });
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        const f = btn.dataset.filter;
-        filterBtns.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-        works.forEach((w) => {
-          const show = f === "all" || w.dataset.type === f;
-          w.hidden = !show;
-        });
+        activeFilter = btn.dataset.filter;
+        apply();
       });
     });
+    apply();
   }
 
   /* ---- Portfolio: lightbox (photos) + modal (film) -------- */

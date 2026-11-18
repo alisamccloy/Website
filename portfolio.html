@@ -31,6 +31,7 @@
       <a class="nav__link" data-bg="about"     href="about.html">About</a>
       <a class="nav__link" data-bg="portfolio" href="portfolio.html" aria-current="page">Portfolio</a>
       <a class="nav__link" data-bg="projects"  href="projects.html">Projects</a>
+      <a class="nav__link" data-bg="journal"   href="journal.html">Journal</a>
       <a class="nav__link" data-bg="contact"   href="contact.html">Contact</a>
     </nav>
   </header>
@@ -39,53 +40,54 @@
     <header class="page-head container">
       <p class="eyebrow">Portfolio</p>
       <h1 class="page-head__title">Selected Work</h1>
-      <p class="page-head__lede">A working edit of stills and motion. Toggle between photography and film, and click any frame to view it larger.</p>
+      <p class="page-head__lede">A working edit of stills and motion. Filter by portrait or landscape, and click any frame to view it larger.</p>
     </header>
 
     <section class="section container" style="padding-top:0">
       <div class="filter" role="group" aria-label="Filter work" data-reveal>
-        <button class="filter__btn" data-filter="all"   aria-pressed="true">All</button>
-        <button class="filter__btn" data-filter="photo" aria-pressed="false">Photography</button>
-        <button class="filter__btn" data-filter="film"  aria-pressed="false">Film</button>
+        <button class="filter__btn" data-filter="all"       aria-pressed="true">All</button>
+        <button class="filter__btn" data-filter="portrait"  aria-pressed="false">Portrait</button>
+        <button class="filter__btn" data-filter="landscape" aria-pressed="false">Landscape</button>
       </div>
 
       <div class="work-grid" data-reveal>
         <button class="work" data-type="photo" data-title="Northbound" data-meta="Editorial · 2026" data-full="assets/images/DSC_0870.png">
-          <img src="assets/images/DSC_0870.png" alt="Editorial photograph — Northbound" loading="lazy" />
+          <img src="assets/images/DSC_0870.png" width="6048" height="4032" alt="Editorial photograph — Northbound" loading="lazy" />
         </button>
 
         <button class="work" data-type="film" data-title="Low Tide" data-meta="Short film · 2:14" data-embed="" data-full="assets/images/DSC_0930.png">
-          <img src="assets/images/DSC_0930.png" alt="Film still — Low Tide" loading="lazy" />
+          <img src="assets/images/DSC_0930.png" width="6048" height="4032" alt="Film still — Low Tide" loading="lazy" />
         </button>
 
         <button class="work" data-type="photo" data-title="Quiet Hours" data-meta="Portrait · 2025" data-full="assets/images/DSC_0894.png">
-          <img src="assets/images/DSC_0894.png" alt="Editorial photograph — Quiet Hours" loading="lazy" />
+          <img src="assets/images/DSC_0894.png" width="6048" height="4032" alt="Editorial photograph — Quiet Hours" loading="lazy" />
         </button>
 
         <button class="work" data-type="photo" data-title="Cassette" data-meta="Editorial · 2025" data-full="assets/images/DSC_0891.png">
-          <img src="assets/images/DSC_0891.png" alt="Editorial photograph — Cassette" loading="lazy" />
+          <img src="assets/images/DSC_0891.png" width="6048" height="4032" alt="Editorial photograph — Cassette" loading="lazy" />
         </button>
 
         <button class="work" data-type="film" data-title="Tenement" data-meta="Music video · 3:48" data-embed="" data-full="assets/images/DSC_0914.png">
-          <img src="assets/images/DSC_0914.png" alt="Film still — Tenement" loading="lazy" />
+          <img src="assets/images/DSC_0914.png" width="6048" height="4032" alt="Film still — Tenement" loading="lazy" />
         </button>
 
         <button class="work" data-type="photo" data-title="Brass" data-meta="Still life · 2025" data-full="assets/images/DSC_0897.png">
-          <img src="assets/images/DSC_0897.png" alt="Editorial photograph — Brass" loading="lazy" />
+          <img src="assets/images/DSC_0897.png" width="6048" height="4032" alt="Editorial photograph — Brass" loading="lazy" />
         </button>
 
         <button class="work" data-type="photo" data-title="Westgate" data-meta="Street · 2024" data-full="assets/images/DSC_0892.png">
-          <img src="assets/images/DSC_0892.png" alt="Editorial photograph — Westgate" loading="lazy" />
+          <img src="assets/images/DSC_0892.png" width="6048" height="4032" alt="Editorial photograph — Westgate" loading="lazy" />
         </button>
 
         <button class="work" data-type="film" data-title="Off-Season" data-meta="Documentary · 6:02" data-embed="" data-full="assets/images/photo-06.svg">
-          <img src="assets/images/photo-06.svg" alt="Film still — Off-Season" loading="lazy" />
+          <img src="assets/images/photo-06.svg" width="1400" height="1000" alt="Film still — Off-Season" loading="lazy" />
         </button>
 
         <button class="work" data-type="photo" data-title="Halflight" data-meta="Portrait · 2024" data-full="assets/images/DSC_0847.png">
-          <img src="assets/images/DSC_0847.png" alt="Editorial photograph — Halflight" loading="lazy" />
+          <img src="assets/images/DSC_0847.png" width="6048" height="4032" alt="Editorial photograph — Halflight" loading="lazy" />
         </button>
       </div>
+      <p class="work-empty" role="status" hidden></p>
     </section>
   </main>
 
